@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 //define mongodb connection URL
-const mongoURL = 'mongodb://127.0.0.1:27017/hotels' // replace hotels with diff database name
-
+// const mongoURL = process.env.MONGODB_URL_LOCAL // replace hotels with diff database name
+const mongoURL = process.env.MONGODB_URL
 //set up mongoDb connection
 mongoose.connect(mongoURL, {
     useNewUrlParser: true,
