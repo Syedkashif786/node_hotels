@@ -3,7 +3,7 @@ const router = express.Router();
 const Person = require('./../models/Person');
 
 //post method to create person
-router.post('/', async(req,res)=>{
+router.post('/signup', async(req,res)=>{
     try{
         const data = req.body; //assuming the request body contains the person data
     
@@ -12,7 +12,7 @@ router.post('/', async(req,res)=>{
 
         //save the newPerson data to the database
         const response = await newPerson.save();
-        console.log("Data saved successfully!", response);
+        console.log("User data saved successfully!");
         res.status(200).json(response);
     }
     catch(err){
@@ -27,7 +27,7 @@ router.get('/', async(req,res)=> {
     try{
         const allPersonData = await Person.find()
         res.status(200).json(allPersonData);
-        console.log('Data fetched successfully!', allPersonData);
+        console.log(' User data fetched successfully!');
     }
     catch(err){
         console.log(err);
@@ -42,7 +42,7 @@ router.get('/:workType', async(req,res)=>{
         const workType = req.params.workType; // extract the work type from the URL parameter
         if(workType == 'chef' || workType == 'waiter' || workType == 'manager'){
             const response = await Person.find({ work: workType });
-            console.log(response, 'data fetched successfully');
+            console.log('User data fetched successfully');
             res.status(200).json(response);
         }else{
             console.log('Invalid work type');
@@ -66,7 +66,7 @@ router.put('/:id', async(req, res)=>{
         if(!response){
             res.status(404).json({error: 'Person not found'})
         }
-        console.log(response, 'Data updated successfully!');
+        console.log(response, 'User data updated successfully!');
         res.status(200).json(response);
     }
     catch(err){
@@ -82,7 +82,7 @@ router.delete('/:id', async(req,res)=>{
         if(!response){
             res.status(404).json('Person not found');
         }
-        console.log(response, 'Data deleted successfully!');
+        console.log(response, 'User data deleted successfully!');
         res.status(200).json({message: 'Person data deleted successfully!'});
     }
     catch(err){

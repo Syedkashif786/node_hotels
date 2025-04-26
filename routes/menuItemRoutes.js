@@ -26,7 +26,7 @@ router.get('/', async(req,res)=>{
     try{
         const menuData = await MenuItem.find();
         res.status(200).json(menuData);
-        console.log('Menu Data fetched successfully', menuData);
+        console.log('Menu Data fetched successfully');
     }
     catch(err){
         console.log(err);
@@ -42,7 +42,7 @@ router.get('/:taste', async(req,res)=>{
         const taste = req.params.taste // extract the taste from the url parameter
         if(taste == 'Spicy' || taste == 'Sweet' || taste == 'Sour'){
             const response = await MenuItem.find({ taste: taste});
-            console.log(response, 'data fetched successfully!');
+            console.log('Menu data fetched successfully!');
             res.status(200).json(response);
         }else{
             res.status(404).json('Invalid taste type');
@@ -82,8 +82,8 @@ router.delete('/:id', async(req,res)=>{
         if(!response){
             res.status(404).json({error: 'Invalid Menu Id'});
         }
-        console.log(response, 'Data deleted successfully!');
-        res.status(200).json({message : 'Data deleted successfully!'});
+        console.log(response, 'Menu data deleted successfully!');
+        res.status(200).json({message : 'Menu data deleted successfully!'});
     }
     catch(err){
         console.log(err);
